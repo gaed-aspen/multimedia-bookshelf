@@ -8,7 +8,7 @@ if __name__ == '__main__':
     running = True
     while running:
         clock.tick(60)
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -16,5 +16,5 @@ if __name__ == '__main__':
         
         window.fill((0, 0, 0))
 
-        pygame.display.set_caption(str(int(clock.get)))
+        pygame.display.set_caption(str(int(clock.get_fps())))
         pygame.display.update()
