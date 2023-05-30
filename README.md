@@ -1,9 +1,11 @@
 # Multimedia Bookshelf
 
 A bookshelf project that allows for visual, audio, and video display.  
-Written in Python using the pygame library
+Written in Python using the pygame library.
 
 ## How to use
+
+**WARNING: STILL IN PRE-PRODUCTION**
 
 This program is designed to be used as an executable. If an executable for your system is unavailable in the releases tab,
 download and extract all files and run  
