@@ -5,8 +5,6 @@ Written in Python using the pygame library
 
 ## How to use
 
----
-
 This program is designed to be used as an executable. If an executable for your system is unavailable in the releases tab,
 download and extract all files and run  
 
@@ -14,4 +12,4 @@ download and extract all files and run
 python3 setup.py build  
 ```
 
-in the directory. The executable will be in the `build/exe.[system type]` under the name `main`.
+in the directory. The executable will be in the `build/exe.[system identifier]` under the name `main`.
