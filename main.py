@@ -1,6 +1,7 @@
-import pygame
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
+
+import pygame
 
 
 def Lerp(start, end, pct):
@@ -40,19 +41,32 @@ def init():
     font = pygame.font.Font('OpenSans-Light.ttf', 20)
 
     # Setup start objects
-    start_text = font.render(
+    info_text = font.render(
         "Please full screen program on the display of choice, then press start", True, (200, 200, 200))
+    start_text = font.render("Start", True, (200, 200, 200))
 
-    start_button = font.render("Start", True, (200, 200, 200))
+    sb_width = start_text.get_width()*2
+    sb_height = start_text.get_height()*1.75
+    sb_foreground_width = sb_width-4
+    sb_foreground_height = sb_height-4
+    start_button = pygame.Surface((start_text.get_width()*2, start_text.get_height()*1.75))
+    start_button.fill(BACKGROUND)
+    pygame.draw.rect(start_button, (10, 10, 10), pygame.Rect(0, 0, sb_width, sb_height), border_radius=5)
+    pygame.draw.rect(start_button, (50, 50, 50), pygame.Rect(2, 2, sb_foreground_width, sb_foreground_height), border_radius=5)
 
-    tx = int((WINDOW_WIDTH / 2)-(start_text.get_width() / 2))
-    ty = int((WINDOW_HEIGHT / 2)-(start_text.get_height() / 2))
+    tx = int((WINDOW_WIDTH / 2)-(info_text.get_width() / 2))
+    ty = int((WINDOW_HEIGHT / 2)-(info_text.get_height() / 2))
     bx = int((WINDOW_WIDTH / 2)-(start_button.get_width() / 2))
     by = int((WINDOW_HEIGHT / 2)-(start_button.get_height() / 2))
+    btx = int((WINDOW_WIDTH / 2)-(start_text.get_width() / 2))
+    bty = int((WINDOW_HEIGHT / 2)-(start_text.get_height() / 2))
+    
     text_start = tx, ty
     text_end = tx, ty - 75
-    button_start = bx, by
-    button_end = bx, by + 50
+    bt_start = btx, bty
+    bt_end = btx, bty + 75
+    bs_start = bx, by
+    bs_end = bx, by + 75
 
     animation_duration = 500  # ms
     lerp_function = EaseOut
@@ -65,6 +79,17 @@ def init():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+                pygame.quit()
+                quit()
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                position = pygame.mouse.get_pos()
+                button_rect = bs_end[0], bs_end[0] + sb_width, bs_end[1], bs_end[1] + sb_height
+                if button_rect[0] < position[0] and position[0] < button_rect[1]:
+                    if button_rect[2] < position[1] and position[1] < button_rect[3]:
+                        print("Click")
+                        running = False
+                        continue
 
         current_time = max(pygame.time.get_ticks() - start_time, 1)
 
@@ -72,26 +97,26 @@ def init():
 
         text_pos = Lerp(text_start[0], text_end[0], lerp_function(pct)), Lerp(
             text_start[1], text_end[1], lerp_function(pct))
-        button_pos = Lerp(button_start[0], button_end[0], pct), Lerp(
-            button_start[1], button_end[1], lerp_function(pct))
+        bt_pos = Lerp(bt_start[0], bt_end[0], lerp_function(pct)), Lerp(
+            bt_start[1], bt_end[1], lerp_function(pct))
+        bs_pos = Lerp(bs_start[0], bs_end[0], lerp_function(pct)), Lerp(
+            bs_start[1], bs_end[1], lerp_function(pct))
 
         opacity = int(Lerp(0, 255, EaseIn(pct)))
 
         # Update and render
         window.fill((50, 50, 50))
 
+        info_text.set_alpha(opacity)
         start_text.set_alpha(opacity)
-        start_button.set_alpha(opacity)
 
-        window.blit(start_text, text_pos)
-        window.blit(start_button, button_pos)
+        window.blit(info_text, text_pos)
+        window.blit(start_button, bs_pos)
+        window.blit(start_text, bt_pos)
 
         pygame.display.update()
 
-    pygame.quit()
-    quit()
-
-    return window
+    return window, clock
 
 
 def draw_bookshelf(window):
@@ -99,18 +124,18 @@ def draw_bookshelf(window):
 
 
 if __name__ == '__main__':
-    window = init()
+    window, clock = init()
 
     running = True
     while running:
-        # clock.tick(60)
+        clock.tick(60)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
                 continue
 
-        window.fill((0, 0, 0))
+        window.fill(BACKGROUND)
 
-        # pygame.display.set_caption(str(int(clock.get_fps())))
+        pygame.display.set_caption(str(int(clock.get_fps())))
         pygame.display.update()
