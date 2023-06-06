@@ -1,0 +1,2 @@
+This is a sample document for testing and demonstration purposes.
+The asset folder will not get updated unless the structure changes.
