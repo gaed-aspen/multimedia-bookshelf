@@ -1,6 +1,7 @@
 {
     "name": "Sample Video",
     "author": "Aspen Davis",
-    "type": "video",
-    "location": "assets/video/sample.mp4"
+    "files": {
+        "main": ["video", "video/sample.mp4"]
+    }
 }

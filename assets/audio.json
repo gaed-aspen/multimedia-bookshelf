@@ -1,6 +1,7 @@
 {
     "name": "Sample Audio",
     "author": "Aspen Davis",
-    "type": "audio",
-    "location": "assets/audio/sample.wav"
+    "files": {
+        "main": ["audio", "audio/sample.wav"]
+    }
 }

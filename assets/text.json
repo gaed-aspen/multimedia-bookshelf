@@ -1,6 +1,11 @@
 {
     "name": "Sample Text",
     "author": "Aspen Davis",
-    "type": "text",
-    "location": "assets/text/sample.txt"
+    "files": {
+        "main": ["text", "text/sample.txt"],
+        "embeds": {
+            "audio1": ["audio", "audio/sample.wav"],
+            "image1": ["images", "image/sample.jpg"]
+        }
+    }
 }

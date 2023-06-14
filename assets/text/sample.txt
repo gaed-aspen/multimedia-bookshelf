@@ -1,2 +1,5 @@
 This is a sample document for testing and demonstration purposes.
 The asset folder will not get updated unless the structure changes.
+
+Sample link (can be used for images, audio, or video. The linked file must be included in this file's json):
+%%image1
