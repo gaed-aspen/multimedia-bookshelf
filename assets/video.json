@@ -1,7 +1,14 @@
 {
     "name": "Sample Video",
-    "author": "Aspen Davis",
     "files": {
-        "main": ["video", "video/sample.mp4"]
-    }
+        "main": [
+            "video-0.5x",
+            "video/sample.mp4"
+        ]
+    },
+    "colour": [
+        100,
+        50,
+        50
+    ]
 }

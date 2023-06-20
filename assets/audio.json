@@ -1,7 +1,14 @@
 {
     "name": "Sample Audio",
-    "author": "Aspen Davis",
     "files": {
-        "main": ["audio", "audio/sample.wav"]
-    }
+        "main": [
+            "audio",
+            "audio/sample.wav"
+        ]
+    },
+    "colour": [
+        50,
+        50,
+        100
+    ]
 }
